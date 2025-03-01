@@ -3,12 +3,13 @@ import axios from "axios";
 
 export default function Home() {
   const [location, setLocation] = useState(null);
-  const [city, setCity] = useState("موقعك");
+  const [city, setCity] = useState("غير معروف");
   const [times, setTimes] = useState({ imsak: "--:--", iftar: "--:--" });
   const [darkMode, setDarkMode] = useState(true);
   const [date, setDate] = useState("");
   const [day, setDay] = useState("");
   const [locationError, setLocationError] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -50,7 +51,7 @@ export default function Home() {
       const response = await axios.get(
         `https://geocode.maps.co/reverse?lat=${lat}&lon=${lon}&api_key=67c31985d47a1611200339icx19efd8`
       );
-      const cityName = response.data.address.city || response.data.address.town || response.data.address.village || "موقعك";
+      const cityName = response.data.address.city || response.data.address.town || response.data.address.village || "غير معروف";
       setCity(cityName);
     } catch (error) {
       console.error("Error fetching city name:", error);
@@ -58,14 +59,14 @@ export default function Home() {
   };
   
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 text-white relative overflow-hidden w-full max-w-sm mx-auto p-4 bg-cover bg-center" style={{ backgroundImage: "url('/bg.jpg')" }}>      
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 text-white relative overflow-hidden w-full max-w-lg mx-auto p-4 bg-cover bg-center" style={{ backgroundImage: "url('/bg1.jpg')" }}>      
       {locationError && (
         <div className="text-center p-3 bg-red-600 text-white rounded-lg w-full mb-4">
           ⚠️ يرجى تفعيل الموقع الجغرافي للحصول على أوقات الإمساك والإفطار بدقة.
         </div>
       )}
 
-      <div className="text-center p-4 w-full bg-opacity-80 bg-gray-900 shadow-lg rounded-lg border border-gray-700 mt-4">
+      <div className="text-center p-4 w-full bg-opacity-80 bg-gray-900 shadow-lg rounded-lg border border-gray-700 mt-4 max-w-md mx-auto">
         <p className="text-lg mb-2 font-semibold text-gray-300">اوقات الإمساك حسب مدينتك</p>
         <p className="text-lg mb-2 font-semibold text-gray-300">{city}</p>
         <p className="text-md font-semibold text-gray-400">{day}, {date}</p>
@@ -92,16 +93,23 @@ export default function Home() {
       <img src="/Logo.png" alt="Website Logo" className="w-32 h-auto mt-6 drop-shadow-lg" />
 
       <div className="mt-4 text-center">
-        <p className="text-md font-semibold">ايرلندا اليوم منصه خدمية تهتم بالشأن العربي في أيرلندا تابعونا على</p>
-        <a 
-          href="https://bento.me/irelandtoday" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-gray-300 hover:underline text-md font-semibold"
-        >
-          bento.me/irelandtoday
-        </a>
+        <button className="text-blue-300 hover:underline" onClick={() => setShowPopup(true)}>
+          كيف يعمل هذا الموقع؟
+        </button>
       </div>
+
+      {/* FAQ Popup */}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4">
+          <div className="bg-gray-900 text-white p-6 rounded-lg w-full max-w-lg mx-auto">
+            <h2 className="text-xl font-bold mb-4">كيف يعمل هذا الموقع؟</h2>
+            <p>هذا الموقع يعرض أوقات الإمساك والإفطار حسب موقعك الجغرافي باستخدام بيانات دقيقة. يتم احتساب الأوقات بناءً على موقعك باستخدام بيانات من API موثوق (Aladhan API) لتقديم أوقات دقيقة للصلوات وفقاً لحسابات فلكية متقدمة.</p>
+            <p className="mt-4 text-yellow-300">نسأل الله الثواب في هذا العمل والمغفرة في حال الخطأ.</p>
+            <p className="mt-4">المصمم: <a href="https://www.linkedin.com/in/osamaabouhajar/" target="_blank" className="text-blue-400 hover:underline">أسامة أبو حجر</a></p>
+            <button className="mt-4 bg-red-500 px-4 py-2 rounded" onClick={() => setShowPopup(false)}>إغلاق</button>
+          </div>
+        </div>
+      )}
       
       {/* Footer */}
       <div className="mt-6 text-center text-gray-400 text-xs pb-4">
