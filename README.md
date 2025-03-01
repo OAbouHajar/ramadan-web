@@ -7,6 +7,8 @@ This is a simple web app that shows **Imsak** and **Iftar** times based on user 
 ✅ Dark & Light mode toggle  
 ✅ Arabic language support  
 ✅ Mobile-friendly design  
+✅ Includes **beautiful Du'aa** after Iftar  
+✅ **Follow us on:** [bento.me/irelandtoday](https://bento.me/irelandtoday)
 
 ## Installation
 1. Clone the repo:  
