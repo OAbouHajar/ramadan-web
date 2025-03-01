@@ -19,7 +19,7 @@ export default function Home() {
   const fetchPrayerTimes = async (lat, lon) => {
     try {
       const response = await axios.get(
-        \`https://api.aladhan.com/v1/timings?latitude=\${lat}&longitude=\${lon}&method=2\`
+        "https://api.aladhan.com/v1/timings?latitude=" + lat + "&longitude=" + lon + "&method=2"
       );
       const timings = response.data.data.timings;
       setTimes({ imsak: timings.Imsak, iftar: timings.Maghrib });
