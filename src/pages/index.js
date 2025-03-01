@@ -89,8 +89,6 @@ export default function Home() {
           "اللهم إني لك صمت، وعلى رزقك أفطرت، ذهب الظمأ، وابتلت العروق، وثبت الأجر إن شاء الله."
         </div>
       </div>
-      {/* Logo */}
-      <img src="/Logo.png" alt="Website Logo" className="w-32 h-auto mt-6 drop-shadow-lg" />
 
       <div className="mt-4 text-center">
         <button className="text-blue-300 hover:underline" onClick={() => setShowPopup(true)}>
