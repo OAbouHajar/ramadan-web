@@ -59,7 +59,7 @@ export default function Home() {
   };
   
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 text-white relative overflow-hidden w-full max-w-lg mx-auto p-4 bg-cover bg-center" style={{ backgroundImage: "url('/bg1.jpg')" }}>      
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 text-white relative overflow-hidden w-full max-w-lg mx-auto p-4 bg-cover bg-center" style={{ backgroundImage: "url('/bg.jpg')" }}>      
       {locationError && (
         <div className="text-center p-3 bg-red-600 text-white rounded-lg w-full mb-4">
           ⚠️ يرجى تفعيل الموقع الجغرافي للحصول على أوقات الإمساك والإفطار بدقة.
@@ -67,19 +67,19 @@ export default function Home() {
       )}
 
       <div className="text-center p-4 w-full bg-opacity-80 bg-gray-900 shadow-lg rounded-lg border border-gray-700 mt-4 max-w-md mx-auto">
-        <p className="text-lg mb-2 font-semibold text-gray-300">اوقات الإمساك حسب مدينتك</p>
+        <p className="text-lg mb-2 font-semibold text-gray-300">وقت الإمساك والإفطار اليوم حسب مدينتك</p>
         <p className="text-lg mb-2 font-semibold text-gray-300">{city}</p>
         <p className="text-md font-semibold text-gray-400">{day}, {date}</p>
 
         <div className="mt-4 flex flex-col items-center gap-4 w-full">
           <div className="bg-blue-900 p-4 rounded-lg shadow-lg w-full text-center flex flex-col items-center border border-blue-600">
-            <img src="/sunrise-icon.png" alt="Sunrise" className="w-10 h-10 mb-1" />
+            <img src="/sunrise-icon1.png" alt="Sunrise" className="w-10 h-10 mb-1" />
             <h2 className="text-lg font-semibold text-white">وقت الإمساك</h2>
             <p className="text-2xl mt-1 font-bold text-blue-300">{times.imsak}</p>
           </div>
 
           <div className="bg-orange-900 p-4 rounded-lg shadow-lg w-full text-center flex flex-col items-center border border-orange-600">
-            <img src="/sunset-icon.png" alt="Sunset" className="w-10 h-10 mb-1" />
+            <img src="/sunset-icon1.png" alt="Sunset" className="w-10 h-10 mb-1" />
             <h2 className="text-lg font-semibold text-orange-300">وقت الإفطار</h2>
             <p className="text-2xl mt-1 font-bold text-orange-200">{times.iftar}</p>
           </div>
@@ -101,12 +101,12 @@ export default function Home() {
       {/* FAQ Popup */}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4">
-          <div className="bg-gray-900 text-white p-6 rounded-lg w-full max-w-lg mx-auto">
-            <h2 className="text-xl font-bold mb-4">كيف يعمل هذا الموقع؟</h2>
-            <p>هذا الموقع يعرض أوقات الإمساك والإفطار حسب موقعك الجغرافي باستخدام بيانات دقيقة. يتم احتساب الأوقات بناءً على موقعك باستخدام بيانات من API موثوق (Aladhan API) لتقديم أوقات دقيقة للصلوات وفقاً لحسابات فلكية متقدمة.</p>
-            <p className="mt-4 text-yellow-300">نسأل الله الثواب في هذا العمل والمغفرة في حال الخطأ.</p>
-            <p className="mt-4">المصمم: <a href="https://www.linkedin.com/in/osamaabouhajar/" target="_blank" className="text-blue-400 hover:underline">أسامة أبو حجر</a></p>
-            <button className="mt-4 bg-red-500 px-4 py-2 rounded" onClick={() => setShowPopup(false)}>إغلاق</button>
+          <div className="bg-gray-900 text-white p-6 rounded-lg w-full max-w-lg mx-auto text-right">
+            <h2 className="text-2xl font-bold mb-4 border-b pb-2">كيف يعمل هذا الموقع؟</h2>
+            <p className="text-lg leading-relaxed">هذا الموقع يعرض أوقات الإمساك والإفطار حسب موقعك الجغرافي باستخدام بيانات دقيقة. يتم احتساب الأوقات بناءً على موقعك باستخدام بيانات من <span className="font-bold">مصدر موثوق</span> لتقديم أوقات دقيقة للصلوات وفقاً لحسابات فلكية متقدمة.</p>
+            <p className="mt-4 text-yellow-300 text-lg font-semibold">نسأل الله الثواب في هذا العمل والمغفرة في حال الخطأ.</p>
+            <p className="mt-4 text-md">المصمم: <a href="https://www.linkedin.com/in/osamaabouhajar/" target="_blank" className="text-blue-400 hover:underline font-bold">أسامة أبو حجر</a></p>
+            <button className="mt-6 bg-red-500 px-5 py-2 rounded text-lg font-semibold" onClick={() => setShowPopup(false)}>إغلاق</button>
           </div>
         </div>
       )}
