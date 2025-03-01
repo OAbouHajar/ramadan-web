@@ -1,0 +1,16 @@
+{
+  "name": "imsak-iftar",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "@heroicons/react": "^1.0.6",
+    "axios": "^0.27.2"
+  }
+}
