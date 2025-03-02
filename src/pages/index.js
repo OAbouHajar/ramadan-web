@@ -113,7 +113,7 @@ export default function Home() {
       
       {/* Footer */}
       <div className="mt-6 text-center text-gray-400 text-xs pb-4">
-        <p>تم تصميم هذا التطبيق باستخدام الذكاء الاصطناعي</p>
+        <p>نسأل الله الثواب في هذا العمل والمغفرة في حال الخطأ</p>
       </div>
     </div>
   );
