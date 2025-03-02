@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function Home() {
   const [location, setLocation] = useState(null);
-  const [city, setCity] = useState("غير معروف");
+  const [city, setCity] = useState("موقعك");
   const [times, setTimes] = useState({ imsak: "--:--", iftar: "--:--" });
   const [darkMode, setDarkMode] = useState(true);
   const [date, setDate] = useState("");
@@ -51,7 +51,7 @@ export default function Home() {
       const response = await axios.get(
         `https://geocode.maps.co/reverse?lat=${lat}&lon=${lon}&api_key=67c31985d47a1611200339icx19efd8`
       );
-      const cityName = response.data.address.city || response.data.address.town || response.data.address.village || "غير معروف";
+      const cityName = response.data.address.city || response.data.address.town || response.data.address.village || "موقعك";
       setCity(cityName);
     } catch (error) {
       console.error("Error fetching city name:", error);
@@ -65,7 +65,7 @@ export default function Home() {
           ⚠️ يرجى تفعيل الموقع الجغرافي للحصول على أوقات الإمساك والإفطار بدقة.
         </div>
       )}
-
+      
       <div className="text-center p-4 w-full bg-opacity-80 bg-gray-900 shadow-lg rounded-lg border border-gray-700 mt-4 max-w-md mx-auto">
         <p className="text-lg mb-2 font-semibold text-gray-300">وقت الإمساك والإفطار اليوم حسب مدينتك</p>
         <p className="text-lg mb-2 font-semibold text-gray-300">{city}</p>
@@ -101,7 +101,9 @@ export default function Home() {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4">
           <div className="bg-gray-900 text-white p-6 rounded-lg w-full max-w-lg mx-auto text-right">
             <h2 className="text-2xl font-bold mb-4 border-b pb-2">كيف يعمل هذا الموقع؟</h2>
-            <p className="text-lg leading-relaxed">هذا الموقع يعرض أوقات الإمساك والإفطار حسب موقعك الجغرافي باستخدام بيانات دقيقة. يتم احتساب الأوقات بناءً على موقعك باستخدام بيانات من <span className="font-bold">مصدر موثوق</span> لتقديم أوقات دقيقة للصلوات وفقاً لحسابات فلكية متقدمة.</p>
+            <p className="text-lg leading-relaxed">
+            يعتمد هذا الموقع على الحسابات الفلكية كمرجع أساسي لعرض أوقات الإمساك والإفطار وفقاً لموقعك الجغرافي، مع استخدام بيانات دقيقة لضمان أعلى مستوى من الدقة في التوقيت. يتم تحديد وقت الإفطار بناءً على الحسابات الفلكية لوقت الغروب، والذي يظل ثابتاً. أما وقت الفجر، فقد يختلف تبعاً لطريقة الحساب المعتمدة في كل دولة. لذا، يُنصح دائماً بالرجوع إلى المركز الإسلامي القريب منك للتحقق من الأوقات المتبعة محلياً في حال وجود أي شك.
+                            </p>
             <p className="mt-4 text-yellow-300 text-lg font-semibold">نسأل الله الثواب في هذا العمل والمغفرة في حال الخطأ.</p>
             <p className="mt-4 text-md">المصمم: <a href="https://www.linkedin.com/in/osamaabouhajar/" target="_blank" className="text-blue-400 hover:underline font-bold">أسامة أبو حجر</a></p>
             <button className="mt-6 bg-red-500 px-5 py-2 rounded text-lg font-semibold" onClick={() => setShowPopup(false)}>إغلاق</button>
