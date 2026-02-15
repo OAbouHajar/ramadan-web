@@ -51,8 +51,15 @@ export default function Home() {
         fajr: timings.Fajr 
       });
 
+      // Fix Hijri Date Format
       setHijriDate(`${hijri.day} ${hijri.month.ar} ${hijri.year}`);
-      setRamadanDay(parseInt(hijri.day));
+      
+      // Check if it's Ramadan
+      if (parseInt(hijri.month.number) === 9) {
+        setRamadanDay(parseInt(hijri.day));
+      } else {
+        setRamadanDay(null);
+      }
 
       const geoResponse = await axios.get(
         `https://geocode.maps.co/reverse?lat=${lat}&lon=${lon}&api_key=67c31985d47a1611200339icx19efd8`
